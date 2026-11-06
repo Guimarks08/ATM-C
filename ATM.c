@@ -6,6 +6,9 @@ int main() {
     int valorOperacao;
     int notas100, notas50, notas20, notas10, notas5;
     int restante;
+    int mudou; // [C89] declarada aqui no topo (antes ficava no meio do bloco do saque)
+    int i;     // [C89] declarada aqui no topo (antes era "int i" dentro do for)
+    int ordemCiclica[] = {50, 20, 10, 5, 100};//Priorizamos entregar notas menores que apenas notas de 100
 
     do {
     	//fase inicial
@@ -63,11 +66,10 @@ int main() {
                     // Passo 2: Distribuir ciclicamente
                     //variavel "mudou" é booleana
                     
-                    int mudou = 1; //Caso o valor da operação seja menor que 185 ou o resto seja menor, entra nesse loop
-                    int ordemCiclica[] = {50, 20, 10, 5, 100};//Priorizamos entregar notas menores que apenas notas de 100
+                    mudou = 1; //Caso o valor da operação seja menor que 185 ou o resto seja menor, entra nesse loop
                     while (mudou && restante > 0) {
                         mudou = 0;
-                        for (int i = 0; i < 5; i++) {
+                        for (i = 0; i < 5; i++) {
                             if (restante >= ordemCiclica[i]) {
                                 if (ordemCiclica[i] == 100)      notas100++;
                                 else if (ordemCiclica[i] == 50)  notas50++;
@@ -122,7 +124,6 @@ int main() {
 
     return 0;
 }
-
 
 
 
